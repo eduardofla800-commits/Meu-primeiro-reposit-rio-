@@ -1,28 +1,33 @@
 lista_de_compras = []
 
 while True:
-    perguntar_item = input('diga o que voce quer adicionar na lista(ou digite sair) - ')
-    
-    if perguntar_item == '':
-        print('voce nao digitou nenhum item\n')
-        
-    elif perguntar_item.lower() == 'sair':
-        break
-    
-    else:
-        lista_de_compras.append(perguntar_item)
-        print(f'{perguntar_item} adicionado na lista\n')
-        
-while True:
     print(
 '''    ==OPCOES==
-1- remover item
-2- adicionar item
-3- sair\n
+1- adicionar item
+2- remover item
+3- ver lista
+4- sair\n
 '''
 )
-    pergunta = input('o que vc quer fazer?(digite 1, 2 ou 3) - ')
-    if pergunta == '1':
+    
+    pergunta = input('o que vc quer fazer? - ').lower().strip()
+    
+    if  pergunta == '1':
+    
+        pergunte = input('o que vc deseja adicionar? - ').lower().strip()
+        
+        if pergunte.strip() == '':
+            print('voce digitou nenhum item\n')
+            
+        elif pergunte in lista_de_compras:
+            print(f'o item {pergunte} ja esta na lista\n')
+    
+        else:
+            lista_de_compras.append(pergunte)
+            print(f'{pergunte} adicionado na lista\n')
+        
+    
+    elif pergunta == '2':
         print('sua lista de compras:\n')
         
         for item in lista_de_compras:
@@ -36,26 +41,25 @@ while True:
             print('item removido\n')
             lista_de_compras.remove(pergunta)
     
-    elif pergunta == '2':
+    elif pergunta == '3':
         print('sua lista de compras:\n')
         
-        for item in lista_de_compras:
-            print(f'item: {item}\n')
-        pergunta = input('o que vc quer adicionar? - ').strip().lower()
+        print('lista de compra:\n')
         
-        if pergunta in lista_de_compras:
-            print(f'o item {pergunta} esta ja esta na lista\n')
-        
-        else:
-            print('item adicionado\n')
-            lista_de_compras.append(pergunta) 
+        if len(lista_de_compras) == 0:
+            print('a lista esta vazia\n')
             
-    elif pergunta == '3':
+        else:
+        
+            for item in lista_de_compras:
+                print(f'item: {item}\n')
+            
+    elif pergunta == '4':
         print('saindo...\n')
         break
         
     else:
-        print('digite uma opcao valida, EX: 1, 2 ou 3\n')
+        print('digite uma opcao valida, EX: 1, 2, 3 ou 4\n')
         
 print('lista completa!\n')
 print('lista:\n')
